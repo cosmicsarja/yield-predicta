@@ -1,1 +1,4 @@
 project_id = "hsxrwpvuqeuftjjlniep"
+
+[functions.predict-agriculture]
+verify_jwt = false
