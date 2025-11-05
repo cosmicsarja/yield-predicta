@@ -12,6 +12,7 @@ import {
   Settings,
   LogOut,
   MapPin,
+  MessageCircle,
 } from "lucide-react";
 import {
   Sidebar,
@@ -38,6 +39,7 @@ const menuItems = [
   { title: "History", url: "/history", icon: History },
   { title: "Weather Updates", url: "/weather", icon: CloudSun },
   { title: "Smart Tips", url: "/smart-tips", icon: Lightbulb },
+  { title: "AI Chat Assistant", url: "/chat", icon: MessageCircle },
   { title: "Map", url: "/map", icon: MapPin },
   { title: "About Developers", url: "/about", icon: Users },
   { title: "Settings", url: "/settings", icon: Settings },

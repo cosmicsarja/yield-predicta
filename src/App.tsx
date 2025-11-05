@@ -20,6 +20,7 @@ import MapView from "./pages/MapView";
 import AboutDevelopers from "./pages/AboutDevelopers";
 import Settings from "./pages/Settings";
 import Profile from "./pages/Profile";
+import AgriChat from "./pages/AgriChat";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -54,6 +55,7 @@ const App = () => (
           <Route path="/history" element={<ProtectedLayout><History /></ProtectedLayout>} />
           <Route path="/weather" element={<ProtectedLayout><WeatherUpdates /></ProtectedLayout>} />
           <Route path="/smart-tips" element={<ProtectedLayout><SmartTips /></ProtectedLayout>} />
+          <Route path="/chat" element={<ProtectedLayout><AgriChat /></ProtectedLayout>} />
           <Route path="/map" element={<ProtectedLayout><MapView /></ProtectedLayout>} />
           <Route path="/about" element={<ProtectedLayout><AboutDevelopers /></ProtectedLayout>} />
           <Route path="/settings" element={<ProtectedLayout><Settings /></ProtectedLayout>} />
