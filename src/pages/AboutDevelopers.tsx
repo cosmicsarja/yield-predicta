@@ -6,25 +6,25 @@ const developers = [
   {
     name: "Shivalingsarj M Desai",
     usn: "2AG24AD406",
-    role: "Team Lead & AI Specialist",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Shivalingsarj",
+    role: "Full Stack Developer, AI integration",
+    avatar: "https://ibb.co/5gzx8PGD",
   },
   {
     name: "Vaibhav Balekundri",
     usn: "2AG23AD053",
-    role: "Backend Developer",
+    role: "ML Developer",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Vaibhav",
   },
   {
     name: "Arzaan Khan",
     usn: "2AG23AD007",
-    role: "ML Engineer",
+    role: "Frontend Developer",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Arzaan",
   },
   {
     name: "Aishwarya Byati",
     usn: "2AG23AD002",
-    role: "Frontend Developer",
+    role: "Documentation",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Aishwarya",
   },
 ];
