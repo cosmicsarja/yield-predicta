@@ -7,7 +7,7 @@ const developers = [
     name: "Shivalingsarj M Desai",
     usn: "2AG24AD406",
     role: "Full Stack Developer, AI integration",
-    avatar: "https://ibb.co/5gzx8PGD",
+    avatar: "IMG_0008.JPG",
   },
   {
     name: "Vaibhav Balekundri",
