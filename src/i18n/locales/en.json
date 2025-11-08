@@ -1,0 +1,132 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "cropRecommendation": "Crop Recommendation",
+    "yieldPrediction": "Yield Prediction",
+    "fertilizerPlan": "Fertilizer Plan",
+    "results": "Results Summary",
+    "history": "History",
+    "weather": "Weather Updates",
+    "smartTips": "Smart Tips",
+    "aiChat": "AI Chat Assistant",
+    "map": "Weather Map",
+    "about": "About Developers",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "common": {
+    "signIn": "Sign In",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "startPredicting": "Start Predicting",
+    "submit": "Submit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "language": "Language"
+  },
+  "home": {
+    "title": "AI-Powered Smart Agriculture Advisor",
+    "subtitle": "Make data-driven farming decisions with advanced AI predictions for crop recommendations, yield forecasting, and fertilizer optimization.",
+    "features": {
+      "crop": {
+        "title": "Crop Recommendation",
+        "desc": "Get AI-powered suggestions for the best crops based on your soil and climate data"
+      },
+      "yield": {
+        "title": "Yield Prediction",
+        "desc": "Accurate forecasts of expected yields to help you plan better and maximize profits"
+      },
+      "fertilizer": {
+        "title": "Fertilizer Advisory",
+        "desc": "Optimized fertilizer recommendations to improve soil health and crop productivity"
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Enter Data",
+        "desc": "Input soil parameters, weather conditions, and farm details"
+      },
+      "step2": {
+        "title": "AI Analysis",
+        "desc": "Our ML models process your data for accurate predictions"
+      },
+      "step3": {
+        "title": "Get Results",
+        "desc": "Receive crop, yield, and fertilizer recommendations"
+      },
+      "step4": {
+        "title": "Make Decisions",
+        "desc": "Implement insights to optimize your farm productivity"
+      }
+    },
+    "cta": {
+      "title": "Ready to Transform Your Farming?",
+      "subtitle": "Join farmers using AI to make smarter decisions and increase their yields",
+      "button": "Get Started Free"
+    },
+    "footer": "© 2025 Smart Agriculture Advisor. Powered by AI for Farmers."
+  },
+  "dashboard": {
+    "welcome": "Welcome to AgriAdvisor",
+    "subtitle": "Your AI-powered farming companion",
+    "quickActions": "Quick Actions",
+    "recentPredictions": "Recent Predictions"
+  },
+  "weather": {
+    "title": "Weather Updates",
+    "subtitle": "Real-time weather information for your farm location",
+    "current": "Current Weather",
+    "temperature": "Temperature",
+    "humidity": "Humidity",
+    "rainfall": "Rainfall",
+    "windSpeed": "Wind Speed",
+    "windDirection": "Wind Direction",
+    "cloudCover": "Cloud Cover",
+    "city": "City",
+    "searchPlaceholder": "Enter city name...",
+    "search": "Search",
+    "forecast": "7-Day Forecast"
+  },
+  "map": {
+    "title": "Agricultural Map & Weather",
+    "subtitle": "Interactive map with real-time weather layers for rainfall, temperature, wind, and storm predictions",
+    "rainfall": "Rainfall",
+    "rainfallDesc": "Toggle rainfall layer to see precipitation patterns",
+    "cloudCover": "Cloud Cover",
+    "cloudDesc": "View cloud coverage and formation patterns",
+    "windSpeed": "Wind Speed",
+    "windDesc": "Monitor wind patterns and speed",
+    "stormAlerts": "Storm Alerts",
+    "stormDesc": "Real-time severe weather warnings",
+    "mapTitle": "Interactive Weather Map",
+    "mapDesc": "Use the layer control (top right) to toggle different weather overlays. Click on markers to view regional information.",
+    "usage": {
+      "title": "Map Usage Guide",
+      "zoom": "Use the +/- buttons or scroll to zoom in/out",
+      "pan": "Click and drag to pan across the map",
+      "layers": "Use the layer control in the top-right to toggle weather overlays",
+      "markers": "Click on markers to see regional agricultural information",
+      "combine": "Combine multiple layers to analyze weather patterns comprehensively"
+    }
+  },
+  "chat": {
+    "title": "AI Chat Assistant",
+    "subtitle": "Ask me anything about crops, weather, farming techniques, or soil health",
+    "placeholder": "Ask about crops, weather, or farming tips...",
+    "send": "Send",
+    "quickQuestions": "Quick Questions",
+    "context": "I have access to your soil data and prediction history"
+  },
+  "about": {
+    "title": "About the Development Team",
+    "institute": "Angadi Institute of Technology and Management, Belagavi",
+    "department": "5th Semester – Artificial Intelligence and Data Science",
+    "team": "Team Members",
+    "project": "Final Year Project – Smart Agriculture Advisor"
+  }
+}
