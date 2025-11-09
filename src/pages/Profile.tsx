@@ -5,14 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, Save, Loader2 } from "lucide-react";
+import { ArrowLeft, Save, Loader2, Upload, User } from "lucide-react";
 import { toast } from "sonner";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Profile = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState<string>("");
   const [profile, setProfile] = useState({
     full_name: "",
     farm_location: "",
@@ -46,12 +49,56 @@ const Profile = () => {
           farm_location: data.farm_location || "",
           farm_size: data.farm_size?.toString() || "",
         });
+        setAvatarUrl(data.avatar_url || "");
       }
     } catch (error: any) {
       console.error("Fetch error:", error);
       toast.error("Failed to load profile");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      setUploading(true);
+      const file = e.target.files?.[0];
+      if (!file) return;
+
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error("Not authenticated");
+
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${user.id}-${Math.random()}.${fileExt}`;
+      const filePath = `avatars/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('profile-pictures')
+        .upload(filePath, file, { upsert: true });
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('profile-pictures')
+        .getPublicUrl(filePath);
+
+      setAvatarUrl(publicUrl);
+      
+      const { error: updateError } = await supabase
+        .from("profiles")
+        .upsert({
+          user_id: user.id,
+          avatar_url: publicUrl,
+        });
+
+      if (updateError) throw updateError;
+
+      toast.success("Profile picture updated!");
+    } catch (error: any) {
+      console.error("Upload error:", error);
+      toast.error("Failed to upload profile picture");
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -74,6 +121,7 @@ const Profile = () => {
           full_name: profile.full_name,
           farm_location: profile.farm_location,
           farm_size: profile.farm_size ? parseFloat(profile.farm_size) : null,
+          avatar_url: avatarUrl,
         });
 
       if (error) throw error;
@@ -90,7 +138,7 @@ const Profile = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse">Loading profile...</div>
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -119,6 +167,49 @@ const Profile = () => {
             Manage your account information
           </p>
         </div>
+
+        <Card className="shadow-medium mb-6">
+          <CardHeader>
+            <CardTitle>Profile Picture</CardTitle>
+            <CardDescription>
+              Upload your profile picture
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col items-center gap-4">
+            <Avatar className="h-32 w-32">
+              <AvatarImage src={avatarUrl} alt="Profile" />
+              <AvatarFallback>
+                <User className="h-16 w-16" />
+              </AvatarFallback>
+            </Avatar>
+            <div className="flex items-center gap-2">
+              <Input
+                id="avatar"
+                type="file"
+                accept="image/*"
+                onChange={handleAvatarUpload}
+                className="hidden"
+              />
+              <Button
+                variant="outline"
+                onClick={() => document.getElementById("avatar")?.click()}
+                disabled={uploading}
+              >
+                {uploading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Uploading...
+                  </>
+                ) : (
+                  <>
+                    <Upload className="mr-2 h-4 w-4" />
+                    Upload Picture
+                  </>
+                )}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
 
         <Card className="shadow-medium">
           <CardHeader>

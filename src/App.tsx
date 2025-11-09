@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+import { LanguagePreferenceModal } from "@/components/LanguagePreferenceModal";
+import { FloatingLanguageButton } from "@/components/FloatingLanguageButton";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
@@ -41,6 +43,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <LanguagePreferenceModal />
+      <FloatingLanguageButton />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />

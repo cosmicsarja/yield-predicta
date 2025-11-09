@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { CloudSun, Droplets, Wind, Thermometer, Cloud, Loader2 } from "lucide-react";
+import { CloudSun, Droplets, Wind, Thermometer, Cloud, Loader2, Navigation } from "lucide-react";
 import { toast } from "sonner";
 
 interface WeatherData {
@@ -10,6 +10,7 @@ interface WeatherData {
   humidity: number;
   rainfall: number;
   windSpeed: number;
+  windDirection: string;
   cloudCover: number;
   description: string;
   location: string;
@@ -20,17 +21,22 @@ export default function WeatherUpdates() {
   const [loading, setLoading] = useState(false);
   const [weather, setWeather] = useState<WeatherData | null>(null);
 
+  const getWindDirection = (deg: number): string => {
+    const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
+    const index = Math.round(deg / 22.5) % 16;
+    return directions[index];
+  };
+
   const fetchWeather = async (city: string) => {
     setLoading(true);
     try {
-      // Using OpenWeatherMap API - users should add their API key
-      const API_KEY = "demo"; // This is a demo key - users need to add their own
+      const API_KEY = "f9e7e68c1e76a8b4f5d89c34d71f3ae5"; // OpenWeatherMap API key
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
       );
       
       if (!response.ok) {
-        throw new Error("City not found or API key required");
+        throw new Error("City not found");
       }
 
       const data = await response.json();
@@ -40,6 +46,7 @@ export default function WeatherUpdates() {
         humidity: data.main.humidity,
         rainfall: data.rain?.["1h"] || 0,
         windSpeed: Math.round(data.wind.speed * 3.6), // Convert m/s to km/h
+        windDirection: getWindDirection(data.wind.deg),
         cloudCover: data.clouds.all,
         description: data.weather[0].description,
         location: data.name,
@@ -48,18 +55,7 @@ export default function WeatherUpdates() {
       toast.success("Weather data updated!");
     } catch (error: any) {
       console.error("Weather fetch error:", error);
-      toast.error("Please add your OpenWeatherMap API key in Settings");
-      
-      // Demo data for testing
-      setWeather({
-        temperature: 28,
-        humidity: 65,
-        rainfall: 2.5,
-        windSpeed: 15,
-        cloudCover: 40,
-        description: "Partly cloudy",
-        location: city,
-      });
+      toast.error("Failed to fetch weather data. Please check the city name.");
     } finally {
       setLoading(false);
     }
@@ -153,6 +149,17 @@ export default function WeatherUpdates() {
 
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-sm font-medium">Wind Direction</CardTitle>
+                <Navigation className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold">{weather.windDirection}</div>
+                <p className="text-xs text-muted-foreground mt-1">Direction</p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium">Cloud Cover</CardTitle>
                 <Cloud className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
@@ -202,6 +209,12 @@ export default function WeatherUpdates() {
                   <li className="flex items-start gap-2">
                     <span className="text-red-500">⚠️</span>
                     <span>Strong winds - Protect delicate crops and check support structures</span>
+                  </li>
+                )}
+                {weather.temperature <= 30 && weather.humidity >= 40 && weather.rainfall <= 5 && weather.windSpeed <= 25 && (
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-500">✅</span>
+                    <span>Favorable conditions for farming activities</span>
                   </li>
                 )}
               </ul>
