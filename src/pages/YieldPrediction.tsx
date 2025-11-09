@@ -7,8 +7,10 @@ import { BarChart, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function YieldPrediction() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -67,11 +69,11 @@ export default function YieldPrediction() {
 
       if (apiError) throw apiError;
 
-      toast.success("Yield prediction generated!");
+      toast.success(t("common.success"));
       navigate("/results");
     } catch (error: any) {
       console.error("Error:", error);
-      toast.error(error.message || "Failed to generate prediction");
+      toast.error(error.message || t("common.error"));
     } finally {
       setLoading(false);
     }
@@ -82,18 +84,18 @@ export default function YieldPrediction() {
       <div className="mb-6">
         <h1 className="text-3xl font-bold flex items-center gap-2">
           <BarChart className="h-8 w-8 text-primary" />
-          Yield Prediction
+          {t("nav.yieldPrediction")}
         </h1>
         <p className="text-muted-foreground mt-2">
-          Predict expected yield using crop type, soil, and climate conditions
+          {t("home.features.yield.desc")}
         </p>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Input Parameters</CardTitle>
+          <CardTitle>{t("common.submit")}</CardTitle>
           <CardDescription>
-            Enter accurate data for precise yield estimation
+            {t("home.features.yield.desc")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -202,10 +204,10 @@ export default function YieldPrediction() {
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Calculating...
+                  {t("common.loading")}
                 </>
               ) : (
-                "Predict Yield"
+                t("nav.yieldPrediction")
               )}
             </Button>
           </form>

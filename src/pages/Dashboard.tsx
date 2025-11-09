@@ -5,11 +5,13 @@ import { User, Session } from "@supabase/supabase-js";
 import { Button } from "@/components/ui/button";
 import { LogOut, Plus, History, User as UserIcon } from "lucide-react";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import PredictionCards from "@/components/dashboard/PredictionCards";
 import RecentPredictions from "@/components/dashboard/RecentPredictions";
 
 const Dashboard = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
@@ -43,9 +45,9 @@ const Dashboard = () => {
   const handleSignOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
-      toast.error("Error signing out");
+      toast.error(t("common.error"));
     } else {
-      toast.success("Signed out successfully");
+      toast.success(t("common.success"));
       navigate("/auth");
     }
   };
@@ -53,7 +55,7 @@ const Dashboard = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse">Loading...</div>
+        <div className="animate-pulse">{t("common.loading")}</div>
       </div>
     );
   }
@@ -76,7 +78,7 @@ const Dashboard = () => {
                 onClick={() => navigate("/history")}
               >
                 <History className="mr-2 h-4 w-4" />
-                History
+                {t("nav.history")}
               </Button>
               <Button
                 variant="ghost"
@@ -92,7 +94,7 @@ const Dashboard = () => {
                 onClick={handleSignOut}
               >
                 <LogOut className="mr-2 h-4 w-4" />
-                Sign Out
+                {t("nav.logout")}
               </Button>
             </div>
           </div>
@@ -103,9 +105,9 @@ const Dashboard = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold mb-2">Dashboard</h1>
+            <h1 className="text-3xl font-bold mb-2">{t("nav.dashboard")}</h1>
             <p className="text-muted-foreground">
-              AI-powered insights for smarter farming decisions
+              {t("dashboard.subtitle")}
             </p>
           </div>
           <Button
@@ -114,7 +116,7 @@ const Dashboard = () => {
             className="shadow-medium hover:shadow-strong transition-smooth"
           >
             <Plus className="mr-2 h-5 w-5" />
-            New Prediction
+            {t("common.startPredicting")}
           </Button>
         </div>
 

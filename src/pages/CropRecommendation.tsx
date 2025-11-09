@@ -7,8 +7,10 @@ import { Sprout, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function CropRecommendation() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -69,11 +71,11 @@ export default function CropRecommendation() {
 
       if (apiError) throw apiError;
 
-      toast.success("Crop recommendation generated!");
+      toast.success(t("common.success"));
       navigate("/results");
     } catch (error: any) {
       console.error("Error:", error);
-      toast.error(error.message || "Failed to generate recommendation");
+      toast.error(error.message || t("common.error"));
     } finally {
       setLoading(false);
     }
@@ -84,18 +86,18 @@ export default function CropRecommendation() {
       <div className="mb-6">
         <h1 className="text-3xl font-bold flex items-center gap-2">
           <Sprout className="h-8 w-8 text-primary" />
-          Crop Recommendation
+          {t("nav.cropRecommendation")}
         </h1>
         <p className="text-muted-foreground mt-2">
-          Enter soil and weather parameters to get the best suitable crop suggestion
+          {t("home.features.crop.desc")}
         </p>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Input Parameters</CardTitle>
+          <CardTitle>{t("common.submit")}</CardTitle>
           <CardDescription>
-            Provide accurate data for better crop recommendations
+            {t("home.features.crop.desc")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -204,10 +206,10 @@ export default function CropRecommendation() {
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Analyzing...
+                  {t("common.loading")}
                 </>
               ) : (
-                "Get Crop Recommendation"
+                t("nav.cropRecommendation")
               )}
             </Button>
           </form>

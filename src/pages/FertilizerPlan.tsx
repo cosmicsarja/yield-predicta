@@ -7,8 +7,10 @@ import { Beaker, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function FertilizerPlan() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -67,11 +69,11 @@ export default function FertilizerPlan() {
 
       if (apiError) throw apiError;
 
-      toast.success("Fertilizer plan generated!");
+      toast.success(t("common.success"));
       navigate("/results");
     } catch (error: any) {
       console.error("Error:", error);
-      toast.error(error.message || "Failed to generate fertilizer plan");
+      toast.error(error.message || t("common.error"));
     } finally {
       setLoading(false);
     }
@@ -82,18 +84,18 @@ export default function FertilizerPlan() {
       <div className="mb-6">
         <h1 className="text-3xl font-bold flex items-center gap-2">
           <Beaker className="h-8 w-8 text-primary" />
-          Fertilizer Plan
+          {t("nav.fertilizerPlan")}
         </h1>
         <p className="text-muted-foreground mt-2">
-          Get a smart fertilizer recommendation based on soil nutrients and crop needs
+          {t("home.features.fertilizer.desc")}
         </p>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Soil Nutrient Analysis</CardTitle>
+          <CardTitle>{t("common.submit")}</CardTitle>
           <CardDescription>
-            Enter current soil parameters for optimal fertilizer recommendation
+            {t("home.features.fertilizer.desc")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -202,10 +204,10 @@ export default function FertilizerPlan() {
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Analyzing...
+                  {t("common.loading")}
                 </>
               ) : (
-                "Generate Fertilizer Plan"
+                t("nav.fertilizerPlan")
               )}
             </Button>
           </form>
