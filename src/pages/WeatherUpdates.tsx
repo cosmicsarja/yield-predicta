@@ -1,61 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { CloudSun, Droplets, Wind, Thermometer, Cloud, Loader2, Navigation } from "lucide-react";
+import { CloudSun, Droplets, Wind, Thermometer, Cloud, Loader2, Navigation, Sprout } from "lucide-react";
 import { toast } from "sonner";
-
-interface WeatherData {
-  temperature: number;
-  humidity: number;
-  rainfall: number;
-  windSpeed: number;
-  windDirection: string;
-  cloudCover: number;
-  description: string;
-  location: string;
-}
+import { fetchWeatherByCity, getFarmingRecommendations, type WeatherData } from "@/lib/weather";
 
 export default function WeatherUpdates() {
   const [location, setLocation] = useState("");
   const [loading, setLoading] = useState(false);
   const [weather, setWeather] = useState<WeatherData | null>(null);
 
-  const getWindDirection = (deg: number): string => {
-    const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
-    const index = Math.round(deg / 22.5) % 16;
-    return directions[index];
-  };
-
   const fetchWeather = async (city: string) => {
     setLoading(true);
     try {
-      const API_KEY = "f9e7e68c1e76a8b4f5d89c34d71f3ae5"; // OpenWeatherMap API key
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
-      );
-      
-      if (!response.ok) {
-        throw new Error("City not found");
-      }
-
-      const data = await response.json();
-      
-      setWeather({
-        temperature: Math.round(data.main.temp),
-        humidity: data.main.humidity,
-        rainfall: data.rain?.["1h"] || 0,
-        windSpeed: Math.round(data.wind.speed * 3.6), // Convert m/s to km/h
-        windDirection: getWindDirection(data.wind.deg),
-        cloudCover: data.clouds.all,
-        description: data.weather[0].description,
-        location: data.name,
-      });
-      
+      const data = await fetchWeatherByCity(city);
+      setWeather(data);
       toast.success("Weather data updated!");
     } catch (error: any) {
       console.error("Weather fetch error:", error);
-      toast.error("Failed to fetch weather data. Please check the city name.");
+      toast.error(error.message || "Failed to fetch weather data");
     } finally {
       setLoading(false);
     }
@@ -64,9 +28,11 @@ export default function WeatherUpdates() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (location.trim()) {
-      fetchWeather(location);
+      fetchWeather(location.trim());
     }
   };
+
+  const recommendations = weather ? getFarmingRecommendations(weather) : [];
 
   return (
     <div className="container mx-auto p-6 max-w-6xl">
@@ -76,14 +42,14 @@ export default function WeatherUpdates() {
           Weather Updates
         </h1>
         <p className="text-muted-foreground mt-2">
-          Real-time weather information for better farming decisions
+          Live weather information and practical field recommendations
         </p>
       </div>
 
       <Card className="mb-6">
         <CardHeader>
           <CardTitle>Search Location</CardTitle>
-          <CardDescription>Enter city name to get current weather data</CardDescription>
+          <CardDescription>Enter a city or town to get current weather data</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="flex gap-2">
@@ -112,7 +78,7 @@ export default function WeatherUpdates() {
           <h2 className="text-2xl font-semibold mb-4">
             {weather.location} - {weather.description}
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -176,47 +142,26 @@ export default function WeatherUpdates() {
               </CardHeader>
               <CardContent>
                 <div className="text-3xl font-bold">{weather.rainfall} mm</div>
-                <p className="text-xs text-muted-foreground mt-1">Last hour</p>
+                <p className="text-xs text-muted-foreground mt-1">Current precipitation</p>
               </CardContent>
             </Card>
           </div>
 
           <Card className="mt-6">
             <CardHeader>
-              <CardTitle>Farming Recommendations</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <Sprout className="h-5 w-5 text-primary" />
+                Farming Recommendations
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-sm">
-                {weather.temperature > 30 && (
-                  <li className="flex items-start gap-2">
-                    <span className="text-orange-500">⚠️</span>
-                    <span>High temperature - Ensure adequate irrigation for crops</span>
+                {recommendations.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="text-primary">•</span>
+                    <span>{item}</span>
                   </li>
-                )}
-                {weather.humidity < 40 && (
-                  <li className="flex items-start gap-2">
-                    <span className="text-yellow-500">⚠️</span>
-                    <span>Low humidity - Monitor soil moisture levels closely</span>
-                  </li>
-                )}
-                {weather.rainfall > 5 && (
-                  <li className="flex items-start gap-2">
-                    <span className="text-blue-500">💧</span>
-                    <span>Recent rainfall - Check drainage systems and avoid waterlogging</span>
-                  </li>
-                )}
-                {weather.windSpeed > 25 && (
-                  <li className="flex items-start gap-2">
-                    <span className="text-red-500">⚠️</span>
-                    <span>Strong winds - Protect delicate crops and check support structures</span>
-                  </li>
-                )}
-                {weather.temperature <= 30 && weather.humidity >= 40 && weather.rainfall <= 5 && weather.windSpeed <= 25 && (
-                  <li className="flex items-start gap-2">
-                    <span className="text-green-500">✅</span>
-                    <span>Favorable conditions for farming activities</span>
-                  </li>
-                )}
+                ))}
               </ul>
             </CardContent>
           </Card>

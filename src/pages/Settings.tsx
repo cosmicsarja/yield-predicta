@@ -29,7 +29,7 @@ export default function Settings() {
         .from("profiles")
         .select("*")
         .eq("user_id", user.id)
-        .single();
+        .maybeSingle();
 
       if (error) throw error;
 
@@ -57,12 +57,12 @@ export default function Settings() {
 
       const { error } = await supabase
         .from("profiles")
-        .update({
+        .upsert({
+          user_id: user.id,
           full_name: profile.full_name,
           farm_location: profile.farm_location,
           farm_size: profile.farm_size ? parseFloat(profile.farm_size) : null,
-        })
-        .eq("user_id", user.id);
+        });
 
       if (error) throw error;
 
@@ -160,17 +160,11 @@ export default function Settings() {
 
       <Card className="mt-6">
         <CardHeader>
-          <CardTitle>API Configuration</CardTitle>
+          <CardTitle>Weather Integration</CardTitle>
           <CardDescription>
-            Configure external service API keys (if needed)
+            Live weather now uses a public forecast service, so no manual API key setup is required.
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground">
-            For weather features, you may need to configure API keys in your Supabase secrets. 
-            Contact your administrator for assistance.
-          </p>
-        </CardContent>
       </Card>
     </div>
   );
