@@ -22,7 +22,7 @@ export default function AgriChat() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const CHAT_URL = `https://hsxrwpvuqeuftjjlniep.supabase.co/functions/v1/agri-chat`;
+  const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/agri-chat`;
 
   useEffect(() => {
     if (scrollRef.current) {
