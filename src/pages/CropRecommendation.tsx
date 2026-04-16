@@ -72,7 +72,7 @@ export default function CropRecommendation() {
       if (apiError) throw apiError;
 
       toast.success(t("common.success"));
-      navigate("/results");
+      navigate(`/results/${inputData.id}`);
     } catch (error: any) {
       console.error("Error:", error);
       toast.error(error.message || t("common.error"));
