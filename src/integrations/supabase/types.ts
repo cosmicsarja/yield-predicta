@@ -14,7 +14,116 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      agri_inputs: {
+        Row: {
+          created_at: string
+          id: string
+          nitrogen: number
+          ph_level: number
+          phosphorus: number
+          potassium: number
+          previous_crop: string | null
+          rainfall: number
+          soil_moisture: number
+          temperature: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          nitrogen?: number
+          ph_level?: number
+          phosphorus?: number
+          potassium?: number
+          previous_crop?: string | null
+          rainfall?: number
+          soil_moisture?: number
+          temperature?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          nitrogen?: number
+          ph_level?: number
+          phosphorus?: number
+          potassium?: number
+          previous_crop?: string | null
+          rainfall?: number
+          soil_moisture?: number
+          temperature?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      agri_results: {
+        Row: {
+          best_crop: string
+          created_at: string
+          fertilizer_plan: string
+          id: string
+          input_id: string
+          yield_prediction: number
+        }
+        Insert: {
+          best_crop: string
+          created_at?: string
+          fertilizer_plan: string
+          id?: string
+          input_id: string
+          yield_prediction: number
+        }
+        Update: {
+          best_crop?: string
+          created_at?: string
+          fertilizer_plan?: string
+          id?: string
+          input_id?: string
+          yield_prediction?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agri_results_input_id_fkey"
+            columns: ["input_id"]
+            isOneToOne: false
+            referencedRelation: "agri_inputs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          farm_location: string | null
+          farm_size: number | null
+          full_name: string | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          farm_location?: string | null
+          farm_size?: number | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          farm_location?: string | null
+          farm_size?: number | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
