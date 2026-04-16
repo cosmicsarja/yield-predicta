@@ -1,36 +1,23 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Download, TrendingUp, Leaf, Beaker } from "lucide-react";
 import { toast } from "sonner";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
-
-interface AgriInput {
-  nitrogen: number;
-  phosphorus: number;
-  potassium: number;
-  ph_level: number;
-  temperature: number;
-  rainfall: number;
-  previous_crop: string | null;
-  soil_moisture: number;
-  created_at: string;
-}
-
-interface AgriResult {
-  best_crop: string;
-  yield_prediction: number;
-  fertilizer_plan: string;
-}
+import {
+  fetchLatestPredictionDetail,
+  fetchPredictionDetail,
+  type AgriInputRecord,
+  type AgriResultRecord,
+} from "@/lib/dashboard-data";
 
 const Results = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const [input, setInput] = useState<AgriInput | null>(null);
-  const [result, setResult] = useState<AgriResult | null>(null);
+  const [input, setInput] = useState<AgriInputRecord | null>(null);
+  const [result, setResult] = useState<AgriResultRecord | null>(null);
 
   useEffect(() => {
     fetchData();
@@ -38,25 +25,16 @@ const Results = () => {
 
   const fetchData = async () => {
     try {
-      // Fetch input data
-      const { data: inputData, error: inputError } = await supabase
-        .from("agri_inputs")
-        .select("*")
-        .eq("id", id)
-        .single();
+      const data = id ? await fetchPredictionDetail(id) : await fetchLatestPredictionDetail();
 
-      if (inputError) throw inputError;
-      setInput(inputData);
+      if (!data) {
+        setInput(null);
+        setResult(null);
+        return;
+      }
 
-      // Fetch result data
-      const { data: resultData, error: resultError } = await supabase
-        .from("agri_results")
-        .select("*")
-        .eq("input_id", id)
-        .single();
-
-      if (resultError) throw resultError;
-      setResult(resultData);
+      setInput(data.input);
+      setResult(data.result);
     } catch (error: any) {
       console.error("Fetch error:", error);
       toast.error("Failed to load results");
@@ -95,7 +73,7 @@ Soil Moisture: ${input.soil_moisture}%
     a.download = `prediction-report-${new Date().toISOString().split("T")[0]}.txt`;
     a.click();
     URL.revokeObjectURL(url);
-    
+
     toast.success("Report downloaded successfully");
   };
 
@@ -150,7 +128,6 @@ Soil Moisture: ${input.soil_moisture}%
           </p>
         </div>
 
-        {/* Prediction Cards */}
         <div className="grid gap-6 md:grid-cols-3 mb-8">
           <Card className="shadow-medium border-2 border-primary/20">
             <CardHeader>
@@ -182,7 +159,7 @@ Soil Moisture: ${input.soil_moisture}%
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold text-accent mb-2">
-                {result.yield_prediction.toLocaleString()}
+                {Number(result.yield_prediction).toLocaleString()}
               </p>
               <CardDescription>kg/ha under optimal conditions</CardDescription>
             </CardContent>
@@ -208,7 +185,6 @@ Soil Moisture: ${input.soil_moisture}%
           </Card>
         </div>
 
-        {/* Input Summary */}
         <Card className="shadow-medium">
           <CardHeader>
             <CardTitle>Input Data Summary</CardTitle>
