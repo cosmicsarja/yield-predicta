@@ -16,21 +16,17 @@ const PredictionCards = () => {
 
   const fetchStats = async () => {
     try {
-      // Get total predictions
       const { count: totalCount } = await supabase
         .from("agri_inputs")
         .select("*", { count: "exact", head: true });
 
-      // Get results for calculations
       const { data: results } = await supabase
         .from("agri_results")
         .select("best_crop, yield_prediction");
 
       if (results && results.length > 0) {
-        // Calculate average yield
-        const avgYield = results.reduce((sum, r) => sum + r.yield_prediction, 0) / results.length;
+        const avgYield = results.reduce((sum, r) => sum + Number(r.yield_prediction), 0) / results.length;
 
-        // Find most common crop
         const cropCounts: Record<string, number> = {};
         results.forEach((r) => {
           cropCounts[r.best_crop] = (cropCounts[r.best_crop] || 0) + 1;
