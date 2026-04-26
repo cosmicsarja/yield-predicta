@@ -107,6 +107,8 @@ export default function FertilizerPlan() {
                   id="nitrogen"
                   type="number"
                   step="0.01"
+                  min="0"
+                  max="140"
                   required
                   value={formData.nitrogen}
                   onChange={(e) => setFormData({ ...formData, nitrogen: e.target.value })}
@@ -119,6 +121,8 @@ export default function FertilizerPlan() {
                   id="phosphorus"
                   type="number"
                   step="0.01"
+                  min="5"
+                  max="145"
                   required
                   value={formData.phosphorus}
                   onChange={(e) => setFormData({ ...formData, phosphorus: e.target.value })}
@@ -131,6 +135,8 @@ export default function FertilizerPlan() {
                   id="potassium"
                   type="number"
                   step="0.01"
+                  min="5"
+                  max="205"
                   required
                   value={formData.potassium}
                   onChange={(e) => setFormData({ ...formData, potassium: e.target.value })}

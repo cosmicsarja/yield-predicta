@@ -4,28 +4,19 @@ import { Badge } from "@/components/ui/badge";
 
 const developers = [
   {
-    name: "Shivalingsarj M Desai",
-    usn: "2AG24AD406",
-    role: "Full Stack Developer, AI integration",
-    avatar: "IMG_0008.JPG",
+    name: "Premkumar Talawar",
+    usn: "U15BO23S0075",
+    avatar: "Image2.WEBP",
   },
   {
-    name: "Vaibhav Balekundri",
-    usn: "2AG23AD053",
-    role: "ML Developer",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Vaibhav",
+    name: "Baburao Bosale",
+    usn: "U15BO23S0085",
+    avatar: "Image1.PNG",
   },
   {
-    name: "Arzaan Khan",
-    usn: "2AG23AD007",
-    role: "Frontend Developer",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Arzaan",
-  },
-  {
-    name: "Aishwarya Byati",
-    usn: "2AG23AD002",
-    role: "Documentation",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Aishwarya",
+    name: "Nabhiraj Gumaj",
+    usn: "U15BO23S0143",
+    avatar: "Image3.JPG",
   },
 ];
 
@@ -53,7 +44,7 @@ export default function AboutDevelopers() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <p className="text-sm text-muted-foreground">Institution</p>
-              <p className="font-semibold">Angadi Institute of Technology and Management</p>
+              <p className="font-semibold">Bharatesh College of Computer Applications</p>
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Location</p>
@@ -61,7 +52,7 @@ export default function AboutDevelopers() {
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Department</p>
-              <p className="font-semibold">Artificial Intelligence and Data Science</p>
+              <p className="font-semibold">BCA</p>
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Semester</p>
@@ -94,7 +85,7 @@ export default function AboutDevelopers() {
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-sm font-medium text-primary mb-3">{dev.role}</p>
+
                 <div className="flex gap-3">
                   <a
                     href="#"
@@ -132,8 +123,8 @@ export default function AboutDevelopers() {
           <div>
             <h3 className="font-semibold mb-2">Objective</h3>
             <p className="text-sm text-muted-foreground">
-              To develop an AI-powered web application that assists farmers in making data-driven 
-              decisions through intelligent crop recommendations, yield predictions, and fertilizer 
+              To develop an AI-powered web application that assists farmers in making data-driven
+              decisions through intelligent crop recommendations, yield predictions, and fertilizer
               advisory based on soil parameters, weather conditions, and historical data.
             </p>
           </div>

@@ -1,11 +1,14 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Lightbulb, Sprout, Droplets, Bug, Sun, Wind } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const tips = [
   {
-    category: "Soil Health",
+    categoryKey: "smartTips.soil",
     icon: Sprout,
     color: "text-green-600",
+    bg: "bg-green-500/10",
+    border: "border-green-500/20",
     tips: [
       "Test soil pH regularly - most crops prefer 6.0-7.0 pH range",
       "Add organic matter like compost to improve soil structure",
@@ -15,9 +18,11 @@ const tips = [
     ],
   },
   {
-    category: "Water Management",
+    categoryKey: "smartTips.water",
     icon: Droplets,
     color: "text-blue-600",
+    bg: "bg-blue-500/10",
+    border: "border-blue-500/20",
     tips: [
       "Water early morning or evening to minimize evaporation",
       "Use drip irrigation for 30-50% water savings",
@@ -27,9 +32,11 @@ const tips = [
     ],
   },
   {
-    category: "Pest Control",
+    categoryKey: "smartTips.pest",
     icon: Bug,
     color: "text-red-600",
+    bg: "bg-red-500/10",
+    border: "border-red-500/20",
     tips: [
       "Use companion planting - marigolds deter many pests naturally",
       "Encourage beneficial insects like ladybugs and lacewings",
@@ -39,9 +46,11 @@ const tips = [
     ],
   },
   {
-    category: "Climate Adaptation",
+    categoryKey: "smartTips.seasonal",
     icon: Sun,
     color: "text-orange-600",
+    bg: "bg-orange-500/10",
+    border: "border-orange-500/20",
     tips: [
       "Choose drought-resistant varieties in water-scarce regions",
       "Use shade nets during extreme heat periods",
@@ -51,9 +60,11 @@ const tips = [
     ],
   },
   {
-    category: "Nutrient Management",
+    categoryKey: "smartTips.harvest",
     icon: Wind,
     color: "text-purple-600",
+    bg: "bg-purple-500/10",
+    border: "border-purple-500/20",
     tips: [
       "Apply fertilizers based on soil test results, not guesswork",
       "Use slow-release fertilizers for sustained nutrient supply",
@@ -65,38 +76,40 @@ const tips = [
 ];
 
 export default function SmartTips() {
+  const { t } = useTranslation();
+
   return (
     <div className="container mx-auto p-6 max-w-6xl">
       <div className="mb-6">
         <h1 className="text-3xl font-bold flex items-center gap-2">
           <Lightbulb className="h-8 w-8 text-primary" />
-          Smart Farming Tips
+          {t("smartTips.title")}
         </h1>
-        <p className="text-muted-foreground mt-2">
-          AI-powered farming tips for better yield and soil health
-        </p>
+        <p className="text-muted-foreground mt-2">{t("smartTips.subtitle")}</p>
       </div>
 
-      <div className="grid gap-6">
+      <div className="grid gap-5">
         {tips.map((section, index) => {
           const Icon = section.icon;
           return (
-            <Card key={index}>
+            <Card key={index} className={`border ${section.border} hover:shadow-medium transition-smooth`}>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Icon className={`h-5 w-5 ${section.color}`} />
-                  {section.category}
+                  <div className={`p-2 rounded-lg ${section.bg}`}>
+                    <Icon className={`h-5 w-5 ${section.color}`} />
+                  </div>
+                  <span>{t(section.categoryKey)}</span>
                 </CardTitle>
                 <CardDescription>
-                  Best practices for {section.category.toLowerCase()}
+                  {t("smartTips.subtitle")}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-3">
+                <ul className="space-y-2.5">
                   {section.tips.map((tip, tipIndex) => (
                     <li key={tipIndex} className="flex items-start gap-3">
-                      <span className={`mt-0.5 ${section.color}`}>•</span>
-                      <span className="text-sm">{tip}</span>
+                      <span className={`mt-1 text-lg ${section.color} shrink-0`}>•</span>
+                      <span className="text-sm leading-relaxed">{tip}</span>
                     </li>
                   ))}
                 </ul>
@@ -108,12 +121,15 @@ export default function SmartTips() {
 
       <Card className="mt-6 bg-primary/5 border-primary/20">
         <CardHeader>
-          <CardTitle>💡 Pro Tip</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <span>💡</span>
+            Pro Tip
+          </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm">
-            Keep a farming journal to track what works best for your specific conditions. 
-            Document planting dates, weather patterns, pest problems, and yields. 
+          <p className="text-sm leading-relaxed">
+            Keep a farming journal to track what works best for your specific conditions.
+            Document planting dates, weather patterns, pest problems, and yields.
             This historical data becomes invaluable for making better decisions in future seasons.
           </p>
         </CardContent>

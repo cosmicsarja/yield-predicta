@@ -9,21 +9,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-
-const languages = [
-  { code: "en", name: "English", flag: "🇬🇧" },
-  { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
-  { code: "kn", name: "ಕನ್ನಡ", flag: "🇮🇳" },
-  { code: "ta", name: "தமிழ்", flag: "🇮🇳" },
-  { code: "te", name: "తెలుగు", flag: "🇮🇳" },
-  { code: "ml", name: "മലയാളം", flag: "🇮🇳" },
-  { code: "mr", name: "मराठी", flag: "🇮🇳" },
-  { code: "gu", name: "ગુજરાતી", flag: "🇮🇳" },
-  { code: "bn", name: "বাংলা", flag: "🇮🇳" },
-  { code: "pa", name: "ਪੰਜਾਬੀ", flag: "🇮🇳" },
-  { code: "or", name: "ଓଡ଼ିଆ", flag: "🇮🇳" },
-  { code: "as", name: "অসমীয়া", flag: "🇮🇳" },
-];
+import { languages } from "@/components/LanguageSelector";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const LanguagePreferenceModal = () => {
   const { i18n } = useTranslation();
@@ -40,13 +27,17 @@ export const LanguagePreferenceModal = () => {
     i18n.changeLanguage(langCode);
     localStorage.setItem("languagePreferenceSet", "true");
     localStorage.setItem("preferredLanguage", langCode);
+    document.documentElement.dir = langCode === "ar" ? "rtl" : "ltr";
     setOpen(false);
     toast.success("Language preference saved!");
   };
 
+  const indiaLangs = languages.filter(l => l.region === "India");
+  const worldLangs = languages.filter(l => l.region === "World");
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="sm:max-w-[680px] max-h-[90vh]">
         <DialogHeader>
           <DialogTitle className="text-2xl text-center">
             🌍 Choose Your Language
@@ -55,19 +46,42 @@ export const LanguagePreferenceModal = () => {
             Select your preferred language for the best experience
           </DialogDescription>
         </DialogHeader>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4">
-          {languages.map((lang) => (
-            <Button
-              key={lang.code}
-              variant="outline"
-              className="h-auto py-4 flex flex-col items-center gap-2 hover:bg-primary hover:text-primary-foreground transition-smooth"
-              onClick={() => handleLanguageSelect(lang.code)}
-            >
-              <span className="text-3xl">{lang.flag}</span>
-              <span className="font-medium">{lang.name}</span>
-            </Button>
-          ))}
-        </div>
+        <ScrollArea className="max-h-[60vh] pr-2">
+          <div className="space-y-4 mt-2">
+            <div>
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-1">🇮🇳 Indian Languages</p>
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                {indiaLangs.map((lang) => (
+                  <Button
+                    key={lang.code}
+                    variant={lang.code === i18n.language ? "default" : "outline"}
+                    className="h-auto py-3 flex flex-col items-center gap-1 hover:bg-primary hover:text-primary-foreground transition-smooth text-xs"
+                    onClick={() => handleLanguageSelect(lang.code)}
+                  >
+                    <span className="text-2xl">{lang.flag}</span>
+                    <span className="font-medium">{lang.name}</span>
+                  </Button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 px-1">🌍 World Languages</p>
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                {worldLangs.map((lang) => (
+                  <Button
+                    key={lang.code}
+                    variant={lang.code === i18n.language ? "default" : "outline"}
+                    className="h-auto py-3 flex flex-col items-center gap-1 hover:bg-primary hover:text-primary-foreground transition-smooth text-xs"
+                    onClick={() => handleLanguageSelect(lang.code)}
+                  >
+                    <span className="text-2xl">{lang.flag}</span>
+                    <span className="font-medium">{lang.name}</span>
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );

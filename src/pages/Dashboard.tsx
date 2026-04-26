@@ -86,7 +86,7 @@ const Dashboard = () => {
                 onClick={() => navigate("/profile")}
               >
                 <UserIcon className="mr-2 h-4 w-4" />
-                Profile
+                {t("nav.profile")}
               </Button>
               <Button
                 variant="ghost"

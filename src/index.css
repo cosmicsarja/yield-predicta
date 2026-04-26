@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/*
+ * AgriAdvisor Design System
+ * Agricultural earth-inspired palette with premium visuals
+ */
 
 @layer base {
   :root {
@@ -47,14 +50,17 @@ All colors MUST be HSL.
     --gradient-hero: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 45%));
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(45 20% 98%));
     --gradient-accent: linear-gradient(135deg, hsl(200 95% 55%), hsl(200 95% 65%));
-    
+    --gradient-warm: linear-gradient(135deg, hsl(30 80% 55%), hsl(30 80% 65%));
+
     /* Shadows */
     --shadow-soft: 0 2px 8px hsl(30 15% 15% / 0.08);
     --shadow-medium: 0 4px 16px hsl(30 15% 15% / 0.12);
     --shadow-strong: 0 8px 24px hsl(30 15% 15% / 0.16);
+    --shadow-glow: 0 0 24px hsl(142 76% 36% / 0.25);
 
     /* Animation */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   .dark {
@@ -90,10 +96,12 @@ All colors MUST be HSL.
     --gradient-hero: linear-gradient(135deg, hsl(142 70% 35%), hsl(142 70% 45%));
     --gradient-card: linear-gradient(180deg, hsl(30 15% 12%), hsl(30 15% 10%));
     --gradient-accent: linear-gradient(135deg, hsl(200 90% 45%), hsl(200 90% 55%));
-    
+    --gradient-warm: linear-gradient(135deg, hsl(30 70% 45%), hsl(30 70% 55%));
+
     --shadow-soft: 0 2px 8px hsl(0 0% 0% / 0.3);
     --shadow-medium: 0 4px 16px hsl(0 0% 0% / 0.4);
     --shadow-strong: 0 8px 24px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 24px hsl(142 70% 45% / 0.3);
   }
 }
 
@@ -103,24 +111,38 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', 'Outfit', system-ui, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-semibold tracking-tight;
+    font-family: 'Outfit', 'Inter', system-ui, sans-serif;
   }
 }
 
 @layer utilities {
+  /* Text gradient */
   .text-gradient {
     @apply bg-clip-text text-transparent;
     background-image: var(--gradient-hero);
   }
 
+  .text-gradient-warm {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-warm);
+  }
+
+  /* Backgrounds */
   .card-gradient {
     background-image: var(--gradient-card);
   }
 
+  .bg-gradient-hero {
+    background-image: var(--gradient-hero);
+  }
+
+  /* Shadows */
   .shadow-soft {
     box-shadow: var(--shadow-soft);
   }
@@ -133,7 +155,127 @@ All colors MUST be HSL.
     box-shadow: var(--shadow-strong);
   }
 
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Transitions */
   .transition-smooth {
     transition: var(--transition-smooth);
   }
+
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  /* Glassmorphism */
+  .glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: hsl(0 0% 100% / 0.7);
+    border: 1px solid hsl(0 0% 100% / 0.2);
+  }
+
+  .dark .glass {
+    background: hsl(30 15% 12% / 0.7);
+    border: 1px solid hsl(0 0% 100% / 0.08);
+  }
+
+  /* Animated gradient background */
+  .animated-gradient {
+    background: linear-gradient(
+      -45deg,
+      hsl(142 76% 36% / 0.08),
+      hsl(200 95% 55% / 0.08),
+      hsl(30 80% 55% / 0.05),
+      hsl(142 76% 36% / 0.08)
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+  }
+
+  /* Pulse glow effect */
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  /* Floating animation */
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
 }
+
+/* Keyframe animations */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(142 76% 36% / 0.4); }
+  50% { box-shadow: 0 0 0 10px hsl(142 76% 36% / 0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Micro-animation utilities */
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease forwards;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Sidebar active state enhancement */
+[data-active="true"] {
+  position: relative;
+}
+
+/* Map iframe responsiveness */
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* RTL support for Arabic */
+[dir="rtl"] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
+[dir="rtl"] .ml-2 { margin-left: 0; margin-right: 0.5rem; }
+[dir="rtl"] .mr-auto { margin-right: 0; margin-left: auto; }
+[dir="rtl"] .ml-auto { margin-left: 0; margin-right: auto; }

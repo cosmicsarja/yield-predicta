@@ -52,7 +52,7 @@ export default function AgriChat() {
 
     try {
       const { data: { session } } = await supabase.auth.getSession();
-      
+
       const resp = await fetch(CHAT_URL, {
         method: "POST",
         headers: {
@@ -115,7 +115,7 @@ export default function AgriChat() {
             const parsed = JSON.parse(jsonStr);
             const content = parsed.choices?.[0]?.delta?.content;
             if (content) updateAssistant(content);
-          } catch {}
+          } catch { }
         }
       }
     } catch (error: any) {
@@ -172,9 +172,8 @@ export default function AgriChat() {
                   {messages.map((message, index) => (
                     <div
                       key={index}
-                      className={`flex gap-3 ${
-                        message.role === "user" ? "justify-end" : "justify-start"
-                      }`}
+                      className={`flex gap-3 ${message.role === "user" ? "justify-end" : "justify-start"
+                        }`}
                     >
                       {message.role === "assistant" && (
                         <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -182,11 +181,10 @@ export default function AgriChat() {
                         </div>
                       )}
                       <div
-                        className={`rounded-lg px-4 py-2 max-w-[80%] ${
-                          message.role === "user"
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-muted"
-                        }`}
+                        className={`rounded-lg px-4 py-2 max-w-[80%] ${message.role === "user"
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-muted"
+                          }`}
                       >
                         <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                       </div>

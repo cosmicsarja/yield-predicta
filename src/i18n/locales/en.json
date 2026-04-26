@@ -12,7 +12,9 @@
     "map": "Weather Map",
     "about": "About Developers",
     "settings": "Settings",
-    "logout": "Logout"
+    "logout": "Logout",
+    "profile": "Profile",
+    "navigation": "Navigation"
   },
   "common": {
     "signIn": "Sign In",
@@ -26,7 +28,16 @@
     "loading": "Loading...",
     "error": "Error",
     "success": "Success",
-    "language": "Language"
+    "language": "Language",
+    "search": "Search",
+    "send": "Send",
+    "saving": "Saving...",
+    "saveChanges": "Save Changes",
+    "getWeather": "Get Weather",
+    "back": "Back",
+    "newPrediction": "New Prediction",
+    "viewAll": "View All",
+    "noData": "No data available"
   },
   "home": {
     "title": "AI-Powered Smart Agriculture Advisor",
@@ -69,13 +80,26 @@
       "subtitle": "Join farmers using AI to make smarter decisions and increase their yields",
       "button": "Get Started Free"
     },
-    "footer": "© 2025 Smart Agriculture Advisor. Powered by AI for Farmers."
+    "footer": "© 2025 Smart Agriculture Advisor. Powered by AI for Farmers.",
+    "trustedBy": "Trusted by Farmers Across India",
+    "stats": {
+      "farmers": "Active Farmers",
+      "predictions": "Predictions Made",
+      "accuracy": "Accuracy Rate",
+      "states": "States Covered"
+    }
   },
   "dashboard": {
     "welcome": "Welcome to AgriAdvisor",
     "subtitle": "Your AI-powered farming companion",
     "quickActions": "Quick Actions",
-    "recentPredictions": "Recent Predictions"
+    "recentPredictions": "Recent Predictions",
+    "totalPredictions": "Total Predictions",
+    "cropsSuggested": "Crops Suggested",
+    "avgYield": "Avg. Yield",
+    "activeAlerts": "Active Alerts",
+    "noPredictions": "No predictions yet. Start your first prediction!",
+    "viewHistory": "View History"
   },
   "weather": {
     "title": "Weather Updates",
@@ -90,11 +114,23 @@
     "city": "City",
     "searchPlaceholder": "Enter city name...",
     "search": "Search",
-    "forecast": "7-Day Forecast"
+    "forecast": "7-Day Forecast",
+    "searchLocation": "Search Location",
+    "enterCity": "Enter a city or town to get current weather data",
+    "currentTemp": "Current temperature",
+    "relativeHumidity": "Relative humidity",
+    "currentWind": "Current wind speed",
+    "direction": "Direction",
+    "skyCoverage": "Sky coverage",
+    "currentPrecip": "Current precipitation",
+    "farmingRecs": "Farming Recommendations",
+    "liveInfo": "Live weather information and practical field recommendations",
+    "noWeatherYet": "Search for a city to see weather data",
+    "radarMap": "Local Weather Map"
   },
   "map": {
     "title": "Agricultural Map & Weather",
-    "subtitle": "Interactive map with real-time weather layers for rainfall, temperature, wind, and storm predictions",
+    "subtitle": "Live satellite weather map with wind, temperature, rainfall, clouds and storm indicators",
     "rainfall": "Rainfall",
     "rainfallDesc": "Toggle rainfall layer to see precipitation patterns",
     "cloudCover": "Cloud Cover",
@@ -103,8 +139,14 @@
     "windDesc": "Monitor wind patterns and speed",
     "stormAlerts": "Storm Alerts",
     "stormDesc": "Real-time severe weather warnings",
-    "mapTitle": "Interactive Weather Map",
-    "mapDesc": "Use the layer control (top right) to toggle different weather overlays. Click on markers to view regional information.",
+    "temperature": "Temperature",
+    "tempDesc": "View temperature patterns across regions",
+    "mapTitle": "Live Satellite Weather Map",
+    "mapDesc": "Powered by Zoom.earth — Switch layers to view wind, temperature, rainfall, and more.",
+    "openFullscreen": "Open Fullscreen",
+    "zoomEarth": "Zoom.earth Live Map",
+    "layers": "Weather Layers",
+    "layerGuide": "Layer Guide",
     "usage": {
       "title": "Map Usage Guide",
       "zoom": "Use the +/- buttons or scroll to zoom in/out",
@@ -112,6 +154,15 @@
       "layers": "Use the layer control in the top-right to toggle weather overlays",
       "markers": "Click on markers to see regional agricultural information",
       "combine": "Combine multiple layers to analyze weather patterns comprehensively"
+    },
+    "indicators": {
+      "wind": "Wind Speed & Direction",
+      "temp": "Temperature",
+      "rain": "Rainfall / Precipitation",
+      "clouds": "Cloud Cover",
+      "humidity": "Humidity",
+      "pressure": "Air Pressure",
+      "storms": "Storm Tracking"
     }
   },
   "chat": {
@@ -120,13 +171,127 @@
     "placeholder": "Ask about crops, weather, or farming tips...",
     "send": "Send",
     "quickQuestions": "Quick Questions",
-    "context": "I have access to your soil data and prediction history"
+    "context": "I have access to your soil data and prediction history",
+    "thinking": "Thinking...",
+    "you": "You",
+    "assistant": "Assistant"
   },
   "about": {
     "title": "About the Development Team",
     "institute": "Angadi Institute of Technology and Management, Belagavi",
     "department": "5th Semester – Artificial Intelligence and Data Science",
     "team": "Team Members",
-    "project": "Final Year Project – Smart Agriculture Advisor"
+    "project": "Final Year Project – Smart Agriculture Advisor",
+    "mission": "Our Mission",
+    "missionDesc": "To empower farmers with AI-driven insights for better agricultural decisions.",
+    "connect": "Connect With Us"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your profile and account preferences",
+    "profileInfo": "Profile Information",
+    "profileDesc": "Update your personal and farm details",
+    "fullName": "Full Name",
+    "namePlaceholder": "Enter your full name",
+    "farmLocation": "Farm Location",
+    "locationPlaceholder": "City, State",
+    "farmSize": "Farm Size (in hectares)",
+    "sizePlaceholder": "Enter farm size",
+    "weatherIntegration": "Weather Integration",
+    "weatherDesc": "Live weather now uses a public forecast service, so no manual API key setup is required.",
+    "languageSettings": "Language & Appearance",
+    "languageDesc": "Choose your preferred language for the app interface",
+    "theme": "Theme",
+    "themeDesc": "Switch between light and dark mode"
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Your account details and farm information",
+    "email": "Email",
+    "memberSince": "Member Since",
+    "farmDetails": "Farm Details",
+    "editProfile": "Edit Profile",
+    "predictions": "Predictions",
+    "location": "Location",
+    "size": "Farm Size"
+  },
+  "auth": {
+    "title": "Welcome Back",
+    "subtitle": "Sign in to your AgriAdvisor account",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "createAccount": "Create Account",
+    "haveAccount": "Already have an account?",
+    "noAccount": "Don't have an account?",
+    "forgotPassword": "Forgot Password?",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password"
+  },
+  "smartTips": {
+    "title": "Smart Farming Tips",
+    "subtitle": "Expert advice for better crop management",
+    "seasonal": "Seasonal Tips",
+    "soil": "Soil Health",
+    "water": "Water Management",
+    "pest": "Pest Control",
+    "harvest": "Harvest Guide"
+  },
+  "history": {
+    "title": "Prediction History",
+    "subtitle": "View all your past crop and yield predictions",
+    "noPredictions": "No predictions found. Start your first prediction!",
+    "date": "Date",
+    "crop": "Crop",
+    "yield": "Predicted Yield",
+    "status": "Status",
+    "viewDetails": "View Details"
+  },
+  "results": {
+    "title": "Results Summary",
+    "subtitle": "Detailed analysis of your prediction results",
+    "cropResult": "Crop Recommendation",
+    "yieldResult": "Yield Prediction",
+    "fertilizerResult": "Fertilizer Plan",
+    "confidence": "Confidence",
+    "recommendations": "Recommendations"
+  },
+  "crop": {
+    "title": "Crop Recommendation",
+    "subtitle": "Get the best crop suggestions for your farm",
+    "soil": "Soil Parameters",
+    "nitrogen": "Nitrogen (N)",
+    "phosphorus": "Phosphorus (P)",
+    "potassium": "Potassium (K)",
+    "ph": "Soil pH",
+    "temperature": "Temperature (°C)",
+    "humidity": "Humidity (%)",
+    "rainfall": "Rainfall (mm)",
+    "submit": "Get Recommendation",
+    "recommended": "Recommended Crop",
+    "confidence": "Confidence Score"
+  },
+  "yield": {
+    "title": "Yield Prediction",
+    "subtitle": "Forecast your crop yield accurately",
+    "cropName": "Crop Name",
+    "area": "Area (hectares)",
+    "season": "Season",
+    "state": "State",
+    "predict": "Predict Yield",
+    "expectedYield": "Expected Yield",
+    "perHectare": "Per Hectare"
+  },
+  "fertilizer": {
+    "title": "Fertilizer Plan",
+    "subtitle": "Optimal fertilizer recommendations for your crops",
+    "cropName": "Crop Name",
+    "soilType": "Soil Type",
+    "moisture": "Soil Moisture",
+    "nitrogen": "Nitrogen Level",
+    "potassium": "Potassium Level",
+    "phosphorus": "Phosphorus Level",
+    "recommend": "Get Plan"
   }
 }

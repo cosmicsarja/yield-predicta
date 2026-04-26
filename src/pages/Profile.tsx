@@ -29,7 +29,7 @@ const Profile = () => {
   const fetchProfile = async () => {
     try {
       const { data: { user } } = await supabase.auth.getUser();
-      
+
       if (!user) {
         navigate("/auth");
         return;
@@ -83,22 +83,23 @@ const Profile = () => {
         .getPublicUrl(filePath);
 
       setAvatarUrl(publicUrl);
-      
+
       const { error: updateError } = await supabase
         .from("profiles")
-        .upsert({
-          user_id: user.id,
+        .update({
           avatar_url: publicUrl,
-        });
+        })
+        .eq("user_id", user.id);
 
       if (updateError) throw updateError;
 
       toast.success("Profile picture updated!");
     } catch (error: any) {
       console.error("Upload error:", error);
-      toast.error("Failed to upload profile picture");
+      toast.error(`Failed to upload: ${error?.message || 'Unknown error'}`);
     } finally {
       setUploading(false);
+      e.target.value = "";
     }
   };
 
@@ -108,7 +109,7 @@ const Profile = () => {
 
     try {
       const { data: { user } } = await supabase.auth.getUser();
-      
+
       if (!user) {
         navigate("/auth");
         return;
@@ -116,13 +117,13 @@ const Profile = () => {
 
       const { error } = await supabase
         .from("profiles")
-        .upsert({
-          user_id: user.id,
+        .update({
           full_name: profile.full_name,
           farm_location: profile.farm_location,
           farm_size: profile.farm_size ? parseFloat(profile.farm_size) : null,
           avatar_url: avatarUrl,
-        });
+        })
+        .eq("user_id", user.id);
 
       if (error) throw error;
 
@@ -192,20 +193,22 @@ const Profile = () => {
               />
               <Button
                 variant="outline"
-                onClick={() => document.getElementById("avatar")?.click()}
                 disabled={uploading}
+                asChild
               >
-                {uploading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Uploading...
-                  </>
-                ) : (
-                  <>
-                    <Upload className="mr-2 h-4 w-4" />
-                    Upload Picture
-                  </>
-                )}
+                <label htmlFor="avatar" className="cursor-pointer">
+                  {uploading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Uploading...
+                    </>
+                  ) : (
+                    <>
+                      <Upload className="mr-2 h-4 w-4" />
+                      Upload Picture
+                    </>
+                  )}
+                </label>
               </Button>
             </div>
           </CardContent>

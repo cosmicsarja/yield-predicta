@@ -1,0 +1,222 @@
+{
+  "nav": {
+    "dashboard": "Panel de Control",
+    "cropRecommendation": "Recomendación de Cultivos",
+    "yieldPrediction": "Predicción de Rendimiento",
+    "fertilizerPlan": "Plan de Fertilizantes",
+    "results": "Resumen de Resultados",
+    "history": "Historial",
+    "weather": "Actualizaciones del Clima",
+    "smartTips": "Consejos Inteligentes",
+    "aiChat": "Asistente de Chat IA",
+    "map": "Mapa del Clima",
+    "about": "Sobre los Desarrolladores",
+    "settings": "Configuración",
+    "logout": "Cerrar Sesión",
+    "profile": "Perfil",
+    "navigation": "Navegación"
+  },
+  "common": {
+    "signIn": "Iniciar Sesión",
+    "getStarted": "Comenzar",
+    "learnMore": "Aprender Más",
+    "startPredicting": "Empezar a Predecir",
+    "submit": "Enviar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "language": "Idioma",
+    "search": "Buscar",
+    "send": "Enviar",
+    "saving": "Guardando...",
+    "saveChanges": "Guardar Cambios",
+    "getWeather": "Ver Clima",
+    "back": "Volver",
+    "newPrediction": "Nueva Predicción",
+    "viewAll": "Ver Todo",
+    "noData": "Sin datos disponibles"
+  },
+  "home": {
+    "title": "Asesor Agrícola Inteligente con IA",
+    "subtitle": "Toma decisiones agrícolas basadas en datos con predicciones avanzadas de IA para recomendaciones de cultivos, pronósticos de rendimiento y optimización de fertilizantes.",
+    "features": {
+      "crop": {
+        "title": "Recomendación de Cultivos",
+        "desc": "Obtén sugerencias impulsadas por IA para los mejores cultivos según tus datos de suelo y clima"
+      },
+      "yield": {
+        "title": "Predicción de Rendimiento",
+        "desc": "Pronósticos precisos de rendimientos esperados para planificar mejor y maximizar ganancias"
+      },
+      "fertilizer": {
+        "title": "Asesoría de Fertilizantes",
+        "desc": "Recomendaciones optimizadas de fertilizantes para mejorar la salud del suelo y la productividad"
+      }
+    },
+    "howItWorks": {
+      "title": "Cómo Funciona",
+      "step1": { "title": "Ingresar Datos", "desc": "Ingresa parámetros del suelo, condiciones climáticas y detalles de la granja" },
+      "step2": { "title": "Análisis IA", "desc": "Nuestros modelos ML procesan tus datos para predicciones precisas" },
+      "step3": { "title": "Obtener Resultados", "desc": "Recibe recomendaciones de cultivos, rendimiento y fertilizantes" },
+      "step4": { "title": "Tomar Decisiones", "desc": "Implementa los conocimientos para optimizar la productividad de tu granja" }
+    },
+    "cta": {
+      "title": "¿Listo para Transformar tu Agricultura?",
+      "subtitle": "Únete a agricultores que usan IA para tomar decisiones más inteligentes y aumentar sus rendimientos",
+      "button": "Comenzar Gratis"
+    },
+    "footer": "© 2025 Asesor Agrícola Inteligente. Impulsado por IA para Agricultores.",
+    "trustedBy": "Con la confianza de agricultores",
+    "stats": { "farmers": "Agricultores Activos", "predictions": "Predicciones Realizadas", "accuracy": "Tasa de Precisión", "states": "Estados Cubiertos" }
+  },
+  "dashboard": {
+    "welcome": "Bienvenido a AgriAdvisor",
+    "subtitle": "Tu compañero agrícola impulsado por IA",
+    "quickActions": "Acciones Rápidas",
+    "recentPredictions": "Predicciones Recientes",
+    "totalPredictions": "Total de Predicciones",
+    "cropsSuggested": "Cultivos Sugeridos",
+    "avgYield": "Rendimiento Promedio",
+    "activeAlerts": "Alertas Activas",
+    "noPredictions": "Sin predicciones aún. ¡Comienza tu primera predicción!",
+    "viewHistory": "Ver Historial"
+  },
+  "weather": {
+    "title": "Actualizaciones del Clima",
+    "subtitle": "Información meteorológica en tiempo real para tu ubicación",
+    "current": "Clima Actual",
+    "temperature": "Temperatura",
+    "humidity": "Humedad",
+    "rainfall": "Lluvia",
+    "windSpeed": "Velocidad del Viento",
+    "windDirection": "Dirección del Viento",
+    "cloudCover": "Cobertura de Nubes",
+    "city": "Ciudad",
+    "searchPlaceholder": "Ingresa el nombre de la ciudad...",
+    "search": "Buscar",
+    "forecast": "Pronóstico de 7 días",
+    "searchLocation": "Buscar Ubicación",
+    "enterCity": "Ingresa una ciudad para obtener el clima actual",
+    "currentTemp": "Temperatura actual",
+    "relativeHumidity": "Humedad relativa",
+    "currentWind": "Velocidad del viento actual",
+    "direction": "Dirección",
+    "skyCoverage": "Cobertura del cielo",
+    "currentPrecip": "Precipitación actual",
+    "farmingRecs": "Recomendaciones Agrícolas",
+    "liveInfo": "Información meteorológica en vivo y recomendaciones prácticas",
+    "noWeatherYet": "Busca una ciudad para ver los datos del clima",
+    "radarMap": "Mapa meteorológico local"
+  },
+  "map": {
+    "title": "Mapa Agrícola y Clima",
+    "subtitle": "Mapa climático satelital en vivo con viento, temperatura, lluvia, nubes e indicadores de tormenta",
+    "rainfall": "Lluvia",
+    "cloudCover": "Cobertura de Nubes",
+    "windSpeed": "Velocidad del Viento",
+    "stormAlerts": "Alertas de Tormenta",
+    "temperature": "Temperatura",
+    "mapTitle": "Mapa Climático Satelital en Vivo",
+    "mapDesc": "Impulsado por Zoom.earth — Cambia las capas para ver viento, temperatura, lluvia y más.",
+    "openFullscreen": "Abrir Pantalla Completa",
+    "layers": "Capas del Clima",
+    "indicators": {
+      "wind": "Velocidad y Dirección del Viento",
+      "temp": "Temperatura",
+      "rain": "Lluvia / Precipitación",
+      "clouds": "Cobertura de Nubes",
+      "humidity": "Humedad",
+      "pressure": "Presión del Aire",
+      "storms": "Seguimiento de Tormentas"
+    }
+  },
+  "chat": {
+    "title": "Asistente de Chat IA",
+    "subtitle": "Pregúntame sobre cultivos, clima, técnicas agrícolas o salud del suelo",
+    "placeholder": "Pregunta sobre cultivos, clima o consejos agrícolas...",
+    "send": "Enviar",
+    "quickQuestions": "Preguntas Rápidas",
+    "context": "Tengo acceso a tus datos de suelo e historial de predicciones",
+    "thinking": "Pensando...",
+    "you": "Tú",
+    "assistant": "Asistente"
+  },
+  "about": {
+    "title": "Sobre el Equipo de Desarrollo",
+    "institute": "Instituto Angadi de Tecnología y Gestión, Belagavi",
+    "department": "5° Semestre – Inteligencia Artificial y Ciencia de Datos",
+    "team": "Miembros del Equipo",
+    "project": "Proyecto Final – Asesor Agrícola Inteligente",
+    "mission": "Nuestra Misión",
+    "missionDesc": "Empoderar a los agricultores con conocimientos impulsados por IA para mejores decisiones agrícolas.",
+    "connect": "Conéctate con Nosotros"
+  },
+  "settings": {
+    "title": "Configuración",
+    "subtitle": "Administra tu perfil y preferencias de cuenta",
+    "profileInfo": "Información del Perfil",
+    "profileDesc": "Actualiza tus datos personales y de granja",
+    "fullName": "Nombre Completo",
+    "namePlaceholder": "Ingresa tu nombre completo",
+    "farmLocation": "Ubicación de la Granja",
+    "locationPlaceholder": "Ciudad, Estado",
+    "farmSize": "Tamaño de la Granja (en hectáreas)",
+    "sizePlaceholder": "Ingresa el tamaño de la granja",
+    "weatherIntegration": "Integración del Clima",
+    "weatherDesc": "El clima en vivo usa un servicio de pronóstico público, no se requiere configuración de clave API.",
+    "languageSettings": "Idioma y Apariencia",
+    "languageDesc": "Elige tu idioma preferido para la interfaz de la aplicación",
+    "theme": "Tema",
+    "themeDesc": "Cambia entre modo claro y oscuro"
+  },
+  "profile": {
+    "title": "Perfil",
+    "subtitle": "Tus datos de cuenta e información de granja",
+    "email": "Correo Electrónico",
+    "memberSince": "Miembro Desde",
+    "farmDetails": "Detalles de la Granja",
+    "editProfile": "Editar Perfil",
+    "predictions": "Predicciones",
+    "location": "Ubicación",
+    "size": "Tamaño de Granja"
+  },
+  "auth": {
+    "title": "Bienvenido de Vuelta",
+    "subtitle": "Inicia sesión en tu cuenta de AgriAdvisor",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "createAccount": "Crear Cuenta",
+    "haveAccount": "¿Ya tienes una cuenta?",
+    "noAccount": "¿No tienes una cuenta?",
+    "emailPlaceholder": "Ingresa tu correo",
+    "passwordPlaceholder": "Ingresa tu contraseña"
+  },
+  "smartTips": {
+    "title": "Consejos Agrícolas Inteligentes",
+    "subtitle": "Consejos de expertos para una mejor gestión de cultivos",
+    "seasonal": "Consejos Estacionales",
+    "soil": "Salud del Suelo",
+    "water": "Gestión del Agua",
+    "pest": "Control de Plagas",
+    "harvest": "Guía de Cosecha"
+  },
+  "history": {
+    "title": "Historial de Predicciones",
+    "subtitle": "Ver todas tus predicciones de cultivos y rendimiento",
+    "noPredictions": "No se encontraron predicciones. ¡Comienza tu primera predicción!",
+    "date": "Fecha",
+    "crop": "Cultivo",
+    "yield": "Rendimiento Predicho",
+    "status": "Estado",
+    "viewDetails": "Ver Detalles"
+  },
+  "results": { "title": "Resumen de Resultados", "subtitle": "Análisis detallado de tus resultados de predicción", "cropResult": "Recomendación de Cultivo", "yieldResult": "Predicción de Rendimiento", "fertilizerResult": "Plan de Fertilizantes", "confidence": "Confianza", "recommendations": "Recomendaciones" },
+  "crop": { "title": "Recomendación de Cultivo", "subtitle": "Obtén las mejores sugerencias de cultivo para tu granja", "soil": "Parámetros del Suelo", "nitrogen": "Nitrógeno (N)", "phosphorus": "Fósforo (P)", "potassium": "Potasio (K)", "ph": "pH del Suelo", "temperature": "Temperatura (°C)", "humidity": "Humedad (%)", "rainfall": "Lluvia (mm)", "submit": "Obtener Recomendación", "recommended": "Cultivo Recomendado", "confidence": "Puntuación de Confianza" },
+  "yield": { "title": "Predicción de Rendimiento", "subtitle": "Pronostica el rendimiento de tu cultivo con precisión", "cropName": "Nombre del Cultivo", "area": "Área (hectáreas)", "season": "Temporada", "state": "Estado", "predict": "Predecir Rendimiento", "expectedYield": "Rendimiento Esperado", "perHectare": "Por Hectárea" },
+  "fertilizer": { "title": "Plan de Fertilizantes", "subtitle": "Recomendaciones óptimas de fertilizantes", "cropName": "Nombre del Cultivo", "soilType": "Tipo de Suelo", "moisture": "Humedad del Suelo", "nitrogen": "Nivel de Nitrógeno", "potassium": "Nivel de Potasio", "phosphorus": "Nivel de Fósforo", "recommend": "Obtener Plan" }
+}

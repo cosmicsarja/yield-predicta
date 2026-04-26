@@ -14,6 +14,16 @@ import bn from './locales/bn.json';
 import pa from './locales/pa.json';
 import or from './locales/or.json';
 import as from './locales/as.json';
+import es from './locales/es.json';
+import fr from './locales/fr.json';
+import ar from './locales/ar.json';
+import pt from './locales/pt.json';
+import ru from './locales/ru.json';
+import zh from './locales/zh.json';
+import ja from './locales/ja.json';
+import de from './locales/de.json';
+import ko from './locales/ko.json';
+import id from './locales/id.json';
 
 i18n
   .use(LanguageDetector)
@@ -32,6 +42,16 @@ i18n
       pa: { translation: pa },
       or: { translation: or },
       as: { translation: as },
+      es: { translation: es },
+      fr: { translation: fr },
+      ar: { translation: ar },
+      pt: { translation: pt },
+      ru: { translation: ru },
+      zh: { translation: zh },
+      ja: { translation: ja },
+      de: { translation: de },
+      ko: { translation: ko },
+      id: { translation: id },
     },
     fallbackLng: 'en',
     detection: {
